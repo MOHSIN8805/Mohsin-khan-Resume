@@ -1,0 +1,538 @@
+/*
+    ---------------------------------------------------------------------
+    CSS STYLING FOR MOHSIN K. KHAN RESUME/PORTFOLIO
+    - Mobile-First Approach
+    - Flexbox and Grid for layout
+    - Color palette for highlighting sections (Teal/Blue, Orange, Green)
+    - Timeline and Hierarchy visual styles
+    - Soft shadows and smooth transitions for modern look
+    ---------------------------------------------------------------------
+*/
+
+/* --- VARIABLES & BASE STYLES --- */
+:root {
+    /* Color Palette */
+    --color-primary-blue: #0077b6;   /* For Contact/IT Icons & Highlights */
+    --color-secondary-teal: #00b4d8; /* For IT Skills Section */
+    --color-tertiary-orange: #fca311; /* For Experience/Objective/Personal */
+    --color-quaternary-green: #2a9d8f; /* For Education */
+    --color-background-light: #f8f9fa; /* Light background */
+    --color-card-bg: #ffffff;      /* Card background */
+    --color-text-dark: #212529;    /* Main text color */
+    --color-text-light: #495057;   /* Secondary text color */
+    
+    /* Layout */
+    --max-width: 1000px;
+    --spacing: 1.5rem;
+    --border-radius: 10px;
+    --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: var(--color-text-dark);
+    background-color: var(--color-background-light);
+    transition: background-color 0.3s ease;
+}
+
+/* --- UTILITY CLASSES --- */
+.icon-blue { color: var(--color-primary-blue); }
+.icon-teal { color: var(--color-secondary-teal); }
+.icon-orange { color: var(--color-tertiary-orange); }
+.icon-green { color: var(--color-quaternary-green); }
+
+/* Card Style for Sections */
+.card {
+    background-color: var(--color-card-bg);
+    padding: var(--spacing);
+    margin: var(--spacing) 0;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Section Header Styling (H3) */
+.section-header {
+    font-weight: 700;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: var(--color-text-dark);
+    display: flex;
+    align-items: center;
+    cursor: pointer; /* Enable hover effect area */
+}
+
+.section-header i {
+    margin-right: 0.75rem;
+    font-size: 1.25em;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* Section Header Hover Animation */
+.section-header:hover i {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.section-objective .section-header:hover i { color: var(--color-tertiary-orange); }
+.section-skills .section-header:hover i { color: var(--color-secondary-teal); }
+.section-experience .section-header:hover i { color: var(--color-tertiary-orange); }
+.section-education .section-header:hover i { color: var(--color-quaternary-green); }
+.section-software .section-header:hover i { color: var(--color-secondary-teal); }
+.section-personal .section-header:hover i { color: var(--color-tertiary-orange); }
+
+
+/* --- HEADER --- */
+.header {
+    background-color: var(--color-primary-blue);
+    color: white;
+    padding: calc(var(--spacing) * 1.5) 0;
+    text-align: center;
+}
+
+.header-content {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing);
+}
+
+.header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-top: 0.5rem;
+}
+
+.header h2 {
+    font-size: 1rem;
+    font-weight: 300;
+    opacity: 0.9;
+    margin-bottom: 1rem;
+}
+
+/* Profile Image */
+.profile-image-container {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid white;
+    box-shadow: 0 0 0 2px var(--color-primary-blue);
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Contact Info */
+.contact-info {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.contact-info p {
+    margin: 0.2rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-info i {
+    margin-right: 0.5rem;
+    font-size: 0.85em;
+    color: white !important; /* Override icon-blue for header */
+}
+
+/* Download PDF Button */
+.btn-pdf {
+    background-color: var(--color-tertiary-orange);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 0.5rem;
+}
+
+.btn-pdf:hover {
+    background-color: #e89500; /* Slightly darker orange */
+    transform: scale(1.05);
+}
+
+.btn-pdf i {
+    margin-right: 0.5rem;
+}
+
+/* --- MAIN CONTAINER --- */
+.container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing);
+}
+
+/* --- SKILLS SECTION (IT Highlight) --- */
+.section-it-highlight {
+    background-color: #e0f7fa; /* Light teal background */
+    border-left: 5px solid var(--color-secondary-teal);
+}
+
+.skills-grid {
+    display: flex;
+    flex-direction: column; /* Stack vertically on mobile */
+    gap: 1.5rem;
+}
+
+.skill-group h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--color-primary-blue);
+}
+
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.skill-tag {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    cursor: default;
+    border: 1px solid;
+}
+
+/* Skill Tag Colors */
+.skill-frontend { background-color: #bbdefb; border-color: #64b5f6; color: #1565c0; }
+.skill-backend { background-color: #c8e6c9; border-color: #81c784; color: #388e3c; }
+.skill-database { background-color: #ffe0b2; border-color: #ffb74d; color: #e65100; }
+.skill-tools { background-color: #e1bee7; border-color: #ba68c8; color: #7b1fa2; }
+
+.skill-tag:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+/* --- EXPERIENCE SECTION (Vertical Hierarchy Chart) --- */
+.experience-hierarchy {
+    position: relative;
+    padding-left: 20px; /* Space for the line and dots */
+    margin-left: 10px;
+}
+
+/* Vertical Line */
+.experience-hierarchy::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 4px;
+    width: 2px;
+    height: 100%;
+    background-color: var(--color-tertiary-orange);
+}
+
+.job-item {
+    position: relative;
+    padding: 0 0 2rem 1.5rem;
+}
+
+/* Remove padding bottom for the last item */
+.job-item-last {
+    padding-bottom: 0;
+}
+
+/* Dot/Circle for each job */
+.job-dot {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 10px;
+    height: 10px;
+    background-color: var(--color-tertiary-orange);
+    border-radius: 50%;
+    border: 2px solid var(--color-card-bg); /* Contrast with card background */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.job-item:hover .job-dot {
+    background-color: #e89500; /* Darker orange on hover */
+    transform: scale(1.3);
+}
+
+.job-content h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-text-dark);
+}
+
+.job-date {
+    font-weight: 400;
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+}
+
+.job-company {
+    color: var(--color-tertiary-orange);
+    font-style: italic;
+    font-size: 0.95rem;
+    margin-top: 0.2rem;
+}
+
+.experience-note {
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    color: var(--color-text-light);
+}
+
+
+/* --- EDUCATION SECTION (Timeline Design) --- */
+.timeline {
+    position: relative;
+    padding-left: 30px; /* Space for the line and circles */
+}
+
+/* Timeline Line */
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 5px;
+    width: 2px;
+    height: 100%;
+    background-color: var(--color-quaternary-green);
+}
+
+.timeline-item {
+    position: relative;
+    padding: 0 0 2rem 1.5rem;
+}
+
+/* Remove padding bottom for the last item */
+.timeline-item-last {
+    padding-bottom: 0;
+}
+
+/* Timeline Dot/Circle */
+.timeline-dot {
+    position: absolute;
+    top: 0;
+    left: -2px; /* Adjusted to align with the line */
+    width: 12px;
+    height: 12px;
+    background-color: var(--color-quaternary-green);
+    border-radius: 50%;
+    border: 3px solid var(--color-card-bg);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline-dot-it {
+    background-color: var(--color-secondary-teal); /* Highlight IT course */
+}
+
+.timeline-item:hover .timeline-dot {
+    background-color: #1e6b63; /* Darker green on hover */
+    box-shadow: 0 0 0 4px rgba(42, 157, 143, 0.4);
+}
+
+.timeline-item:hover .timeline-dot-it {
+    background-color: #008c9e; /* Darker teal on hover */
+    box-shadow: 0 0 0 4px rgba(0, 180, 216, 0.4);
+}
+
+.timeline-content h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-text-dark);
+}
+
+.timeline-institution {
+    color: var(--color-quaternary-green);
+    font-size: 0.95rem;
+    margin-top: 0.2rem;
+}
+
+.timeline-date {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--color-text-light);
+    font-weight: 600;
+    margin-top: 0.2rem;
+}
+
+
+/* --- SOFTWARE & PERSONAL DETAILS --- */
+
+/* List item style (removes default bullets and uses icon) */
+.section-software ul {
+    list-style: none;
+    padding: 0;
+}
+
+.section-software li {
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem; /* Space for the icon */
+    position: relative;
+}
+
+.section-software li i {
+    position: absolute;
+    left: 0;
+    top: 0.25rem;
+    font-size: 0.75rem;
+    transition: transform 0.2s ease;
+}
+
+.section-software li:hover i {
+    transform: translateX(3px);
+}
+
+/* Personal Details Grid */
+.personal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns */
+    gap: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.personal-grid p {
+    font-weight: 600;
+    color: var(--color-text-dark);
+}
+
+.personal-grid span {
+    color: var(--color-text-light);
+}
+
+/* --- FOOTER --- */
+.footer {
+    text-align: center;
+    padding: 1rem 0;
+    font-size: 0.85rem;
+    color: var(--color-text-light);
+    background-color: #e9ecef;
+    margin-top: 2rem;
+}
+
+
+/*
+    ---------------------------------------------------------------------
+    MEDIA QUERIES FOR RESPONSIVENESS (Mobile-First)
+    ---------------------------------------------------------------------
+*/
+
+/* Tablet/Small Desktop Layout (Breakpoints at 768px) */
+@media (min-width: 768px) {
+    
+    .header h1 {
+        font-size: 2.5rem;
+    }
+
+    .header h2 {
+        font-size: 1.1rem;
+    }
+    
+    /* Grid for Software and Personal Details (Side-by-side) */
+    .details-section-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--spacing);
+    }
+
+    /* Skills Grid (Side-by-side groups) */
+    .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+}
+
+/* Large Desktop Layout (Breakpoints at 1024px) */
+@media (min-width: 1024px) {
+    .container {
+        /* Enable a two-column layout for main sections on wider screens */
+        display: grid;
+        grid-template-columns: 2fr 1fr; /* Example: 2/3 width for experience/education, 1/3 for details */
+        gap: var(--spacing);
+        grid-template-areas:
+            "objective objective"
+            "skills skills"
+            "experience education"
+            "software personal";
+    }
+
+    /* Assign Grid Areas */
+    .section-objective { grid-area: objective; }
+    .section-skills { grid-area: skills; }
+    .section-experience { grid-area: experience; }
+    .section-education { grid-area: education; }
+    .details-section-grid {
+        /* Reset grid area, will use inner grid */
+        display: contents; 
+    }
+    .section-software { grid-area: software; }
+    .section-personal { grid-area: personal; }
+
+    /* Skills Grid (Four columns) */
+    .skills-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* --- PROFILE IMAGE BASE STYLES --- */
+.profile-image-container {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+    border-radius: 50%;
+    overflow: hidden; /* CRITICAL: Clips the image into a circle */
+    border: 4px solid white;
+    box-shadow: 0 0 0 2px var(--color-primary-blue);
+    /* Set position for the image to scale correctly */
+    position: relative;
+    z-index: 10;
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    /* New styles for hover effect: */
+    cursor: zoom-in; /* Change cursor to indicate interactivity */
+    transition: transform 0.3s ease-in-out; /* Smooth animation for the transformation */
+    transform-origin: center center;
+}
+
+/* --- HOVER ZOOM EFFECT --- */
+
+/* Scale the image up when hovered */
+.profile-image:hover {
+    transform: scale(1.5); 
+}
+
+/* Allow the scaled image to break out of the circle container when hovered,
+   so the zoom effect is fully visible. */
+.profile-image-container:hover {
+    overflow: visible; 
+}
